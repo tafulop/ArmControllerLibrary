@@ -14,12 +14,35 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "../RoboticArmPartLibrary/AllParts.h"
 #include "../PartContainerLibrary/PartContainerManager.h"
+#include "../SocketServer/SimulationManager.h"
+#include "../InitializerLibrary/InitializationManager.h"
 
 
 class Controller {
 public:
+    
+    /**
+     * Initializes the robotic arm.
+     */
+    void initialize();
+    
+    /**
+     * Start the simulation.
+     */
+    void startSimulation();
+    
+    /**
+     * Stops the simulation.
+     */
+    void stopSimulation();
+    
+    
+    /**
+     * Moves the robotic arm into initial/home position.
+     */
+    void moveToHomePosition();
+    
     
     /**
      * Singleton 
@@ -34,7 +57,15 @@ public:
     
 private:
     
+    /* Container of parts*/
     PartContainerManager pcManager = PartContainerManager::getInstance();
+    
+    /* Simulation */
+    SimulationManager& simulationManager = SimulationManager::getInstance();
+    
+    /* initializer */
+    InitializationManager& initializer = InitializationManager::getInstance();
+    
     
     /**
      * Default constructor.

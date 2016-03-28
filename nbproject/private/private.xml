@@ -9,6 +9,9 @@
         <group>
             <file>file:/mnt/seagate_1TB/Development/Robotkar_reboot/ArmControllerLibrary/Controller.h</file>
             <file>file:/mnt/seagate_1TB/Development/Robotkar_reboot/ArmControllerLibrary/Controller.cpp</file>
+            <file>file:/mnt/seagate_1TB/Development/Robotkar_reboot/ArmControllerLibrary/tests/ControllerTest.h</file>
+            <file>file:/mnt/seagate_1TB/Development/Robotkar_reboot/ArmControllerLibrary/tests/ControllerTest.cpp</file>
+            <file>file:/mnt/seagate_1TB/Development/Robotkar_reboot/ArmControllerLibrary/tests/ControllerTestRunner.cpp</file>
         </group>
     </open-files>
 </project-private>
