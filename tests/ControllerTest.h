@@ -20,9 +20,11 @@
 #include <thread>
 
 class ControllerTest : public CPPUNIT_NS::TestFixture {
+    
     CPPUNIT_TEST_SUITE(ControllerTest);
 
-    CPPUNIT_TEST(simulationTest);
+   // CPPUNIT_TEST(simulationTest);
+    CPPUNIT_TEST(homePositionTest);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -35,6 +37,8 @@ public:
 private:
     
     void simulationTest();
+    
+    void homePositionTest();
 };
 
 #endif /* CONTROLLERTEST_H */

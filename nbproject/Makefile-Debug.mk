@@ -86,13 +86,16 @@ ${OBJECTDIR}/Controller.o: Controller.cpp
 # Build Test Targets
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
+	cd /mnt/seagate_1TB/Development/Robotkar_reboot/PartContainerLibrary && ${MAKE}  -f Makefile CONF=Debug
+	cd /mnt/seagate_1TB/Development/Robotkar_reboot/RoboticArmPartLibrary && ${MAKE}  -f Makefile CONF=Debug
 	cd /mnt/seagate_1TB/Development/Robotkar_reboot/SocketServer && ${MAKE}  -f Makefile CONF=Debug
+	cd /mnt/seagate_1TB/Development/Robotkar_reboot/InitializerLibrary && ${MAKE}  -f Makefile CONF=Debug
 	cd /mnt/seagate_1TB/Development/Robotkar_reboot/RoboticArmPartLibrary && ${MAKE}  -f Makefile CONF=Debug
 	cd /mnt/seagate_1TB/Development/Robotkar_reboot/PartContainerLibrary && ${MAKE}  -f Makefile CONF=Debug
 
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/ControllerTest.o ${TESTDIR}/tests/ControllerTestRunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc}  -lzmq -lpthread -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} `cppunit-config --libs` /mnt/seagate_1TB/Development/Robotkar_reboot/PartContainerLibrary/dist/Debug/GNU-Linux/libpartcontainerlibrary.a /mnt/seagate_1TB/Development/Robotkar_reboot/SocketServer/dist/Debug/GNU-Linux/libsocketserver.a /mnt/seagate_1TB/Development/Robotkar_reboot/CustomLibraries/libjson.a /mnt/seagate_1TB/Development/Robotkar_reboot/RoboticArmPartLibrary/dist/Debug/GNU-Linux/libroboticarmpartlibrary.a   
+	${LINK.cc}  -lzmq -lpthread -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} /mnt/seagate_1TB/Development/Robotkar_reboot/InitializerLibrary/dist/Debug/GNU-Linux/libinitializerlibrary.a /mnt/seagate_1TB/Development/Robotkar_reboot/PartContainerLibrary/dist/Debug/GNU-Linux/libpartcontainerlibrary.a /mnt/seagate_1TB/Development/Robotkar_reboot/RoboticArmPartLibrary/dist/Debug/GNU-Linux/libroboticarmpartlibrary.a `cppunit-config --libs` /mnt/seagate_1TB/Development/Robotkar_reboot/PartContainerLibrary/dist/Debug/GNU-Linux/libpartcontainerlibrary.a /mnt/seagate_1TB/Development/Robotkar_reboot/SocketServer/dist/Debug/GNU-Linux/libsocketserver.a /mnt/seagate_1TB/Development/Robotkar_reboot/CustomLibraries/libjson.a /mnt/seagate_1TB/Development/Robotkar_reboot/RoboticArmPartLibrary/dist/Debug/GNU-Linux/libroboticarmpartlibrary.a   
 
 
 ${TESTDIR}/tests/ControllerTest.o: tests/ControllerTest.cpp 

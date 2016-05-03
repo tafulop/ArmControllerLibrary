@@ -53,3 +53,10 @@ void Controller::moveToHomePosition(){
     }
 
 }
+
+
+void Controller::switchForwardKinCalc(bool enable){
+    
+    forwardKinematics.setAutorun(enable);
+
+}

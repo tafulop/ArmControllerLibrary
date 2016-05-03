@@ -32,6 +32,10 @@ void ControllerTest::simulationTest() {
     
     Controller& control = Controller::getInstance();
     
+    // create parts
+    control.initialize();
+    
+    // start server
     control.startSimulation();
     
     // sleep for 10 sec
@@ -43,4 +47,45 @@ void ControllerTest::simulationTest() {
     CPPUNIT_ASSERT(true);
 }
 
+ void ControllerTest::homePositionTest(){
+     
+    bool success = true; 
+    float test_ang = 123423;
+    Controller& control = Controller::getInstance();
+    PartContainerManager parts = PartContainerManager::getInstance();
+    
+    
+    control.initialize();
+     
+    // set not null angle values
+    try{
+        parts.joints.get("J1")->setAngle(test_ang);
+        parts.joints.get("J2")->setAngle(test_ang);
+        parts.joints.get("J3")->setAngle(test_ang);
+        parts.joints.get("J4")->setAngle(test_ang);
+        parts.joints.get("J5")->setAngle(test_ang);
+    
+        // validate if joint angles has been set
+        if(parts.joints.get("J1")->getAngle() != test_ang)success = false;
+        if(parts.joints.get("J2")->getAngle() != test_ang)success = false;
+        if(parts.joints.get("J3")->getAngle() != test_ang)success = false;
+        if(parts.joints.get("J4")->getAngle() != test_ang)success = false;
+        if(parts.joints.get("J5")->getAngle() != test_ang)success = false;
+        
+        control.moveToHomePosition();
+        
+        // validate if joint angles has been set
+        if(parts.joints.get("J1")->getAngle() != 0)success = false;
+        if(parts.joints.get("J2")->getAngle() != 0)success = false;
+        if(parts.joints.get("J3")->getAngle() != 0)success = false;
+        if(parts.joints.get("J4")->getAngle() != 0)success = false;
+        if(parts.joints.get("J5")->getAngle() != 0)success = false;
+        
+    }catch(std::out_of_range oor){
+        std::cout << oor.what() << std::endl;
+        success = false;
+    }
+    
+    CPPUNIT_ASSERT(success);
 
+ }

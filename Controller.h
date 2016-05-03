@@ -17,6 +17,7 @@
 #include "../PartContainerLibrary/PartContainerManager.h"
 #include "../SocketServer/SimulationManager.h"
 #include "../InitializerLibrary/InitializationManager.h"
+#include "../CalculatorLibrary/ForwardKinematics.h"
 
 
 class Controller {
@@ -37,12 +38,29 @@ public:
      */
     void stopSimulation();
     
+    /**
+     * Toggles the inverse kinematics calculation
+     * @param enable
+     */
+    void switchForwardKinCalc(bool enable);
+    
     
     /**
      * Moves the robotic arm into initial/home position.
      */
     void moveToHomePosition();
     
+    /**
+     * Use to get the current position of the effector
+     * @return 
+     */
+    arma::fmat getEffectorPosition(){
+        return this->forwardKinematics.getEffectorPosition();
+    }
+    
+        
+    /* Forward kinematics */
+    ForwardKinematics& forwardKinematics = ForwardKinematics::getInstance();
     
     /**
      * Singleton 
@@ -65,7 +83,7 @@ private:
     
     /* initializer */
     InitializationManager& initializer = InitializationManager::getInstance();
-    
+
     
     /**
      * Default constructor.
